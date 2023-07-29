@@ -1,7 +1,7 @@
 # markdown-toc-numbering
 
 ## What it does
-- Numbering headings in markdown files:
+- Number headings in markdown files:
     - Before:
         ```markdown
         # society
@@ -30,12 +30,12 @@
         ## 4.3. english
         ## 4.4. french
         ```
-- Make table of contents in markdown files
+- Make a table of contents in markdown files
     - Before:
         ```markdown
         Title
         ===
-        
+
         # 1. society
         ## 1.1. politics
         ## 1.2. economics
@@ -65,7 +65,7 @@
             - [4.3. english](#43english)
             - [4.4. french](#44french)
         <!-- Table of contents -->
-        
+
         # 1. society
         ## 1.1. politics
         ## 1.2. economics
@@ -90,14 +90,14 @@
     ```
     - `add`: add numbering to headings
     - `remove`: remove numbering from headings
-    
+
 - Add table of contents. This script will add table of contents to all markdown files in the directory.
     ```bash
     python toc.py add /path/to/directory
     ```
     - `add`: add table of contents
     - `remove`: remove table of contents
-    
+
 ## Note
 This script assumes that markdown files has the following format:
 ```markdown
