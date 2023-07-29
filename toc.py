@@ -132,8 +132,3 @@ if __name__ == "__main__":
     elif action_to_perform == 'remove':
         process_files_in_directory(directory_path, action_to_perform)
         print("Table of contents removed successfully from all Markdown files in the directory and its subdirectories.")
-
-
-# Usage:
-# python main.py add /path/to/your/directory
-# python main.py remove /path/to/your/directory

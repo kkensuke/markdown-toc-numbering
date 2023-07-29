@@ -160,8 +160,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-# Usage:
-# python main.py add /path/to/your/directory
-# python main.py remove /path/to/your/directory
