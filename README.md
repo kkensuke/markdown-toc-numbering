@@ -52,19 +52,6 @@
         ```markdown
         Title
         ===
-        <!-- Table of contents -->
-        - [1. society](#1society)
-            - [1.1. politics](#11politics)
-            - [1.2. economics](#12economics)
-        - [2. to do](#2todo)
-        - [3. academic](#3academic)
-            - [3.1. math](#31math)
-            - [3.2. physics](#32physics)
-        - [4. language](#4language)
-            - [4.1. japanese](#41japanese)
-            - [4.3. english](#43english)
-            - [4.4. french](#44french)
-        <!-- Table of contents -->
 
         # 1. society
         ## 1.1. politics
