@@ -30,7 +30,7 @@
         ## 4.3. english
         ## 4.4. french
         ```
-- Make a table of contents in markdown files
+- Make tables of contents in markdown files
     - Before:
         ```markdown
         Title
@@ -84,19 +84,19 @@
     ```bash
     pip install markdown beautifulsoup4
     ```
-- Number headings. This script will add numbering to headings in all markdown files in the directory.
+- This script will number headings in all markdown files in the directory.
     ```bash
     python numbering.py add /path/to/directory
     ```
-    - `add`: add numbering to headings
-    - `remove`: remove numbering from headings
+    - `add`: add numbers to headings
+    - `remove`: remove numbers from headings
 
-- Add a table of contents. This script will add table of contents to all markdown files in the directory.
+- This script will add tables of contents to all markdown files in the directory.
     ```bash
     python toc.py add /path/to/directory
     ```
-    - `add`: add table of contents
-    - `remove`: remove table of contents
+    - `add`: add tables of contents
+    - `remove`: remove tables of contents
 
 ## Note
 This script assumes that markdown files has the following format:
