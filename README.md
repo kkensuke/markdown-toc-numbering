@@ -1,7 +1,7 @@
 # markdown-toc-numbering
 
 ## What it does
-- Numbering the headings in markdown files:
+- Numbering headings in markdown files:
     - Before:
         ```markdown
         # society
