@@ -116,5 +116,5 @@ The title is written in the first line using `===`.
 
 The table of contents is written below the title using `<!-- Table of contents -->` and `<!-- Table of contents -->`.
 
-References:
+## References:
 - [vscode-markdown-header](https://github.com/panchaoxin/vscode-markdown-header/tree/master)
