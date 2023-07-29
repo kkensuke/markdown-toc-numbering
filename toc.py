@@ -6,6 +6,9 @@ from pathlib import Path
 import markdown
 from bs4 import BeautifulSoup
 
+HEADER_MARK = "#"
+HEADER_PATTERN = f"^{HEADER_MARK}+\\s+(([\\d,\\.])+\\s+)?"
+
 
 def generate_unique_anchor(heading_text):
     # Generate a unique anchor link based on the heading text
@@ -13,40 +16,37 @@ def generate_unique_anchor(heading_text):
     return anchor
 
 
+def count_header_mark(line):
+    count = 0
+    for c in line:
+        if c == HEADER_MARK:
+            count += 1
+        else:
+            break
+    return count
+
+
 def generate_table_of_contents(md_content):
-    # Convert Markdown to HTML
-    md_html = markdown.markdown(md_content)
-    
-    # Parse the HTML content
-    soup = BeautifulSoup(md_html, 'html.parser')
+    lines = md_content.split("\n")
     
     toc_lines = []
     
-    # Keep track of whether the first heading has been encountered
-    first_heading_encountered = False
-    
-    for heading in soup.find_all(['h1', 'h2', 'h3', 'h4', 'h5', 'h6']):
-        # Skip the first heading
-        if not first_heading_encountered:
-            first_heading_encountered = True
+    is_in_code_area = False
+
+    for i, line in enumerate(lines):
+        if line.startswith("```"):
+            is_in_code_area = not is_in_code_area
             continue
-        
-        # Get the heading level (h1, h2, etc.)
-        heading_level = int(heading.name[1])
-        
-        # Get the text of the heading
-        heading_text = heading.get_text(strip=True)
-        
-        # Create a unique anchor link for the heading
-        anchor = generate_unique_anchor(heading_text)
-        
-        # Create the table of contents entry with appropriate indentation
-        toc_entry = f"{' ' * (heading_level - 1) * 2}- [{heading_text}](#{anchor})"
-        toc_lines.append(toc_entry)
-        
-        # Add the unique anchor link to the heading
-        heading['id'] = anchor
-    
+            
+        if not is_in_code_area and line.startswith(HEADER_MARK):
+            header_match = re.match(HEADER_PATTERN, line)
+            if header_match:
+                header_level = count_header_mark(line)
+                header_text = line[header_level:].strip()
+                anchor = generate_unique_anchor(header_text)
+                toc_entry = f"{' ' * (header_level - 1) * 4}- [{header_text}](#{anchor})"
+                toc_lines.append(toc_entry)
+            
     return "\n".join(toc_lines)
 
 
