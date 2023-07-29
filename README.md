@@ -84,14 +84,14 @@
     ```bash
     pip install markdown beautifulsoup4
     ```
-- Add numbering to headings. This script will add numbering to headings in all markdown files in the directory.
+- Number headings. This script will add numbering to headings in all markdown files in the directory.
     ```bash
     python numbering.py add /path/to/directory
     ```
     - `add`: add numbering to headings
     - `remove`: remove numbering from headings
 
-- Add table of contents. This script will add table of contents to all markdown files in the directory.
+- Add a table of contents. This script will add table of contents to all markdown files in the directory.
     ```bash
     python toc.py add /path/to/directory
     ```
