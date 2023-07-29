@@ -12,7 +12,10 @@ HEADER_PATTERN = f"^{HEADER_MARK}+\\s+(([\\d,\\.])+\\s+)?"
 
 def generate_unique_anchor(heading_text):
     # Generate a unique anchor link based on the heading text
-    anchor = re.sub(r'[^\w\-]+', '', heading_text.lower())
+    # Remove non-word characters, convert to lowercase, and replace spaces with hyphens
+    anchor = re.sub(r'[\s]+', '-', heading_text.lower())
+    # Remove any trailing hyphens
+    anchor = anchor.strip('-')
     return anchor
 
 
