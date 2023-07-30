@@ -135,7 +135,7 @@ def process_markdown_files(directory_path, add_header_numbers=True):
 # Function to run the script based on command-line arguments
 def main():
     parser = argparse.ArgumentParser(description="Add or remove header numbers from Markdown files.")
-    parser.add_argument("action", choices=["add", "remove"],
+    parser.add_argument("action", choices=["add", "remove", "update"],
                         help="Choose the action: 'add_header_numbers' or 'remove_header_numbers'")
     parser.add_argument("directory_path", help="The path to the target directory containing Markdown files.")
     args = parser.parse_args()
@@ -144,8 +144,17 @@ def main():
 
     if args.action == "add":
         process_markdown_files(target_directory, add_header_numbers=True)
-    else:
+        print("Header numbers added successfully!")
+    elif args.action == "remove":
         process_markdown_files(target_directory, add_header_numbers=False)
+        print("Header numbers removed successfully!")
+    elif args.action == "update":
+        process_markdown_files(target_directory, add_header_numbers=False)
+        process_markdown_files(target_directory, add_header_numbers=True)
+        print("Header numbers updated successfully!")
+    else:
+        print("Invalid action. Please specify 'add' or 'remove' or 'update'.")
+        
 
 if __name__ == "__main__":
     main()

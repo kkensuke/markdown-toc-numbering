@@ -119,7 +119,7 @@ def process_files_in_directory(directory_path, action):
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Add or remove table of contents in Markdown files.")
-    parser.add_argument("action_to_perform", choices=["add", "remove"], help="Action to perform: 'add' or 'remove' the table of contents.")
+    parser.add_argument("action_to_perform", choices=["add", "remove", "update"], help="Action to perform: 'add' or 'remove' the table of contents.")
     parser.add_argument("directory_path", help="Path to the directory containing the Markdown files.")
     args = parser.parse_args()
 
@@ -135,3 +135,9 @@ if __name__ == "__main__":
     elif action_to_perform == 'remove':
         process_files_in_directory(directory_path, action_to_perform)
         print("Table of contents removed successfully from all Markdown files in the directory and its subdirectories.")
+    elif action_to_perform == 'update':
+        process_files_in_directory(directory_path, 'remove')
+        process_files_in_directory(directory_path, 'add')
+        print("Table of contents updated successfully in all Markdown files in the directory and its subdirectories.")
+    else:
+        print("Invalid action. Please specify 'add' or 'remove' or 'update'.")
