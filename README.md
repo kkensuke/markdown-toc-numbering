@@ -18,17 +18,17 @@
         ```
     - After:
         ```markdown
-        # 1. society
-        ## 1.1. politics
-        ## 1.2. economics
-        # 2. to do
-        # 3. academic
-        ## 3.1. math
-        ## 3.2. physics
-        # 4. language
-        ## 4.1. japanese
-        ## 4.3. english
-        ## 4.4. french
+        # 1 society
+        ## 1.1 politics
+        ## 1.2 economics
+        # 2 to do
+        # 3 academic
+        ## 3.1 math
+        ## 3.2 physics
+        # 4 language
+        ## 4.1 japanese
+        ## 4.3 english
+        ## 4.4 french
         ```
 - Make tables of contents in markdown files
     - Before:
@@ -36,34 +36,47 @@
         Title
         ===
 
-        # 1. society
-        ## 1.1. politics
-        ## 1.2. economics
-        # 2. to do
-        # 3. academic
-        ## 3.1. math
-        ## 3.2. physics
-        # 4. language
-        ## 4.1. japanese
-        ## 4.3. english
-        ## 4.4. french
+        # 1 society
+        ## 1.1 politics
+        ## 1.2 economics
+        # 2 to do
+        # 3 academic
+        ## 3.1 math
+        ## 3.2 physics
+        # 4 language
+        ## 4.1 japanese
+        ## 4.3 english
+        ## 4.4 french
         ```
     - After:
         ```markdown
         Title
         ===
+        <!-- Table of contents -->
+        - [1 society](#1-society)
+            - [1.1 politics](#1.1-politics)
+            - [1.2 economics](#1.2-economics)
+        - [2 to do](#2-to-do)
+        - [3 academic](#3-academic)
+            - [3.1 math](#3.1-math)
+            - [3.2 physics](#3.2-physics)
+        - [4 language](#4-language)
+            - [4.1 japanese](#4.1-japanese)
+            - [4.3 english](#4.3-english)
+            - [4.4 french](#4.4-french)
+        <!-- Table of contents -->
 
-        # 1. society
-        ## 1.1. politics
-        ## 1.2. economics
-        # 2. to do
-        # 3. academic
-        ## 3.1. math
-        ## 3.2. physics
-        # 4. language
-        ## 4.1. japanese
-        ## 4.3. english
-        ## 4.4. french
+        # 1 society
+        ## 1.1 politics
+        ## 1.2 economics
+        # 2 to do
+        # 3 academic
+        ## 3.1 math
+        ## 3.2 physics
+        # 4 language
+        ## 4.1 japanese
+        ## 4.3 english
+        ## 4.4 french
         ```
 
 ## How to use
