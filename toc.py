@@ -60,12 +60,11 @@ def add_table_of_contents(md_content, toc_marker):
         return md_content
 
     # Find the pattern for the title, e.g., "title\n==="
-    title_pattern = r"^(.+)\n===$"
+    title_pattern = r"^(.*)===$"
     title_match = re.search(title_pattern, md_content, re.MULTILINE)
 
     if title_match:
-        # Use the custom title and insert the table of contents below it
-        custom_title = title_match.group(1).strip()
+        # Use the title from the markdown file and insert the table of contents
         toc = generate_table_of_contents(md_content)
         title_end = title_match.end()
         updated_content = f"{md_content[:title_end]}\n{toc_marker}\n{toc}\n{toc_marker}{md_content[title_end:]}"
@@ -74,7 +73,6 @@ def add_table_of_contents(md_content, toc_marker):
         default_title = "Title"
         toc = generate_table_of_contents(md_content)
         updated_content = f"{default_title}\n===\n{toc_marker}\n{toc}\n{toc_marker}{md_content}"
-
     return updated_content
 
 
