@@ -90,7 +90,7 @@
     ```
     - `add`: add numbers to headings
     - `remove`: remove numbers from headings
-    - `update`: update numbering
+    - `update`: update numbers
 
 - `toc.py` will add tables of contents to all markdown files in the directory.
     ```bash
