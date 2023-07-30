@@ -86,7 +86,7 @@
     - `remove`: remove tables of contents
 
 ## Note
-This script assumes that markdown files has the following format:
+This script assumes that the title is written in the first line using `===` as follows.
 ```markdown
 Title
 ===
@@ -99,9 +99,8 @@ Title
 ## heading2.2
 ```
 
-The title is written in the first line using `===`.
 
-The table of contents is written below the title using `<!-- Table of contents -->` and `<!-- Table of contents -->`.
+The table of contents will be added below the title using `<!-- Table of contents -->` and `<!-- Table of contents -->`.
 
 ## References:
 - [vscode-markdown-header](https://github.com/panchaoxin/vscode-markdown-header/tree/master)
