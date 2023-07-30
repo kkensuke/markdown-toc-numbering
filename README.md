@@ -113,7 +113,7 @@ Title
 ```
 
 
-The table of contents will be added below the title using `<!-- Table of contents -->` and `<!-- Table of contents -->`.
+The table of contents will be added below the title between `<!-- Table of contents -->` and `<!-- Table of contents -->`.
 
 ## References:
 - [vscode-markdown-header](https://github.com/panchaoxin/vscode-markdown-header/tree/master)
