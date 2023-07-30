@@ -80,10 +80,6 @@
         ```
 
 ## How to use
-- Install
-    ```bash
-    pip install markdown beautifulsoup4
-    ```
 - `numbering.py` will number headings in all markdown files in the directory.
     ```bash
     python numbering.py add /path/to/directory

@@ -1,10 +1,6 @@
 import argparse
-import os
 import re
 from pathlib import Path
-
-import markdown
-from bs4 import BeautifulSoup
 
 HEADER_MARK = "#"
 HEADER_PATTERN = f"^{HEADER_MARK}+\\s+(([\\d,\\.])+\\s+)?"
@@ -129,13 +125,13 @@ if __name__ == "__main__":
 
     if action_to_perform == 'add':
         process_files_in_directory(directory_path, action_to_perform)
-        print("Table of contents added successfully to all Markdown files in the directory and its subdirectories.")
+        print("Table of contents added successfully!")
     elif action_to_perform == 'remove':
         process_files_in_directory(directory_path, action_to_perform)
-        print("Table of contents removed successfully from all Markdown files in the directory and its subdirectories.")
+        print("Table of contents removed successfully!")
     elif action_to_perform == 'update':
         process_files_in_directory(directory_path, 'remove')
         process_files_in_directory(directory_path, 'add')
-        print("Table of contents updated successfully in all Markdown files in the directory and its subdirectories.")
+        print("Table of contents updated successfully!")
     else:
         print("Invalid action. Please specify 'add' or 'remove' or 'update'.")
