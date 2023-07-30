@@ -88,7 +88,7 @@
     ```bash
     python numbering.py add /path/to/directory
     ```
-    - `add`: add numbers to headings
+    - `add`   : add numbers to headings
     - `remove`: remove numbers from headings
     - `update`: update numbers
 
@@ -96,7 +96,7 @@
     ```bash
     python toc.py add /path/to/directory
     ```
-    - `add`: add tables of contents
+    - `add`   : add tables of contents
     - `remove`: remove tables of contents
     - `update`: update tables of contents
 
