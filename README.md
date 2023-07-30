@@ -7,7 +7,7 @@
         # society
         ## politics
         ## economics
-        # to Do
+        # to do
         # academic
         ## math
         ## physics
