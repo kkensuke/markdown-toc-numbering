@@ -33,7 +33,7 @@ class MarkdownHeader:
                 new_line += f"{level_order[i]}."
             else:
                 new_line += f"{level_order[i]}"
-        # start with index 0
+        # start with index 0 for level 1
         # if level == 1:
         #     for i in range(1, level + 1):
         #         if level_order[i] == 0:
@@ -130,17 +130,6 @@ def process_markdown_files(directory_path, add_header_numbers=True):
                     add_header_numbers_to_file(file_path)
                 else:
                     remove_header_numbers_from_file(file_path)
-
-
-# Example usage:
-if __name__ == "__main__":
-    target_directory = "./"
-
-    # To add numbered headers to all Markdown files in the directory
-    process_markdown_files(target_directory, add_header_numbers=True)
-
-    # To remove numbered headers from all Markdown files in the directory
-    # process_markdown_files(target_directory, add_header_numbers=False)
 
 
 # Function to run the script based on command-line arguments
