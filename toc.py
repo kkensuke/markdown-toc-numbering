@@ -31,16 +31,16 @@ def generate_unique_anchor(heading_text):
 # Generate a table of contents from the Markdown content
 def generate_toc(md_content):
     lines = md_content.split("\n")
-    
+
     toc_lines = []
-    
+
     is_in_code_area = False
 
     for i, line in enumerate(lines):
         if line.startswith("```"):
             is_in_code_area = not is_in_code_area
             continue
-            
+
         if not is_in_code_area and line.startswith(HEADER_MARK):
             header_match = re.match(HEADER_PATTERN, line)
             if header_match:
@@ -49,7 +49,7 @@ def generate_toc(md_content):
                 anchor = generate_unique_anchor(header_text)
                 toc_entry = f"{' ' * (header_level - 1) * 4}- [{header_text}](#{anchor})"
                 toc_lines.append(toc_entry)
-            
+
     return "\n".join(toc_lines)
 
 
@@ -84,7 +84,7 @@ def remove_toc_internal(md_content, toc_marker):
         # Find the start and end positions of the table of contents
         toc_start = md_content.find(toc_marker)
         toc_end = md_content.find(toc_marker, toc_start + len(toc_marker))
-        
+
         if toc_end != -1:
             # Remove the table of contents along with the markers
             updated_content = md_content[:toc_start].strip() + md_content[toc_end + len(toc_marker):]
