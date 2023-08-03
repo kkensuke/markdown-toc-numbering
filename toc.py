@@ -141,7 +141,7 @@ def process_files_in_directory(directory_path, action):
             pass
 
 
-# Main function
+# Function to run the script based on command-line arguments
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Add or remove table of contents in Markdown files.")
     parser.add_argument("action_to_perform", choices=["add", "remove", "update"], help="Action to perform: 'add' or 'remove' the table of contents.")
