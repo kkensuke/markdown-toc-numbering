@@ -1,6 +1,7 @@
 import argparse
 import os
 import re
+from pathlib import Path
 
 HEADER_MARK = "#"
 HEADER_PATTERN = f"^{HEADER_MARK}+\\s+(([\\d,\\.])+\\s+)?"
@@ -59,7 +60,7 @@ def generate_header_number_internal(lines):
 
 def remove_number(lines):
     is_in_code_area = False
-    
+
     for i, line in enumerate(lines):
         if line.startswith("```"):
             is_in_code_area = not is_in_code_area
@@ -116,14 +117,15 @@ def remove_header_numbers_from_file(file_path):
 
 # Function to process all Markdown files in a directory
 def process_markdown_files(directory_path, add_header_numbers=True):
-    for root, _, files in os.walk(directory_path):
-        for file in files:
-            if file.endswith(".md"):
-                file_path = os.path.join(root, file)
-                if add_header_numbers:
-                    add_header_numbers_to_file(file_path)
-                else:
-                    remove_header_numbers_from_file(file_path)
+    for file_path in Path(directory_path).rglob('*.md'):
+        file_path = str(file_path)  # Convert Path object to string
+        if not os.path.islink(file_path):
+            if add_header_numbers:
+                add_header_numbers_to_file(file_path)
+            else:
+                remove_header_numbers_from_file(file_path)
+        else:
+            pass
 
 
 # Function to run the script based on command-line arguments
@@ -148,7 +150,7 @@ def main():
         print("Header numbers updated successfully!")
     else:
         print("Invalid action. Please specify 'add' or 'remove' or 'update'.")
-        
+
 
 if __name__ == "__main__":
     main()
