@@ -8,6 +8,7 @@ HEADER_PATTERN = f"^{HEADER_MARK}+\\s+(([\\d,\\.])+\\s+)?"
 MAX_LEVEL = 6
 
 
+# Count the number of header marks at the beginning of a line
 def count_header_mark(line):
     count = 0
     for c in line:
@@ -18,6 +19,7 @@ def count_header_mark(line):
     return count
 
 
+# add number to header line
 def generate_number(line, level_order):
     reg = re.compile(HEADER_PATTERN)
     if not reg.search(line):
@@ -37,6 +39,7 @@ def generate_number(line, level_order):
     return new_line
 
 
+# Internal function to add numbered headers to a Markdown file
 def generate_header_number_internal(lines):
     is_in_code_area = False
     last_level = -1
@@ -58,9 +61,10 @@ def generate_header_number_internal(lines):
             lines[i] = generate_number(line, level_order)
 
 
-def remove_number(lines):
+# Internal function to remove numbered headers from a Markdown file
+def remove_header_number_internal(lines):
     is_in_code_area = False
-
+    
     for i, line in enumerate(lines):
         if line.startswith("```"):
             is_in_code_area = not is_in_code_area
@@ -76,15 +80,17 @@ def remove_number(lines):
             lines[i] = prefix + line
 
 
+# Function to add numbered headers to markdown contents
 def generate_header_number(content):
     lines = content.split("\n")
     generate_header_number_internal(lines)
     return "\n".join(lines)
 
 
+# Function to remove numbered headers from markdown contents
 def remove_header_number(content):
     lines = content.split("\n")
-    remove_number(lines)
+    remove_header_number_internal(lines)
     return "\n".join(lines)
 
 
@@ -150,7 +156,7 @@ def main():
         print("Header numbers updated successfully!")
     else:
         print("Invalid action. Please specify 'add' or 'remove' or 'update'.")
-
+        
 
 if __name__ == "__main__":
     main()

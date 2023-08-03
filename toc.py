@@ -7,15 +7,7 @@ HEADER_MARK = "#"
 HEADER_PATTERN = f"^{HEADER_MARK}+\\s+(([\\d,\\.])+\\s+)?"
 
 
-def generate_unique_anchor(heading_text):
-    # Generate a unique anchor link based on the heading text
-    # Remove non-word characters, convert to lowercase, and replace spaces with hyphens
-    anchor = re.sub(r'[\s]+', '-', heading_text.lower())
-    # Remove any trailing hyphens
-    anchor = anchor.strip('-')
-    return anchor
-
-
+# Count the number of header marks at the beginning of a line
 def count_header_mark(line):
     count = 0
     for c in line:
@@ -26,18 +18,29 @@ def count_header_mark(line):
     return count
 
 
-def generate_table_of_contents(md_content):
+# Generate a unique anchor link based on the heading text
+def generate_unique_anchor(heading_text):
+    # Generate a unique anchor link based on the heading text
+    # Remove non-word characters, convert to lowercase, and replace spaces with hyphens
+    anchor = re.sub(r'[\s]+', '-', heading_text.lower())
+    # Remove any trailing hyphens
+    anchor = anchor.strip('-')
+    return anchor
+
+
+# Generate a table of contents from the Markdown content
+def generate_toc(md_content):
     lines = md_content.split("\n")
-
+    
     toc_lines = []
-
+    
     is_in_code_area = False
 
     for i, line in enumerate(lines):
         if line.startswith("```"):
             is_in_code_area = not is_in_code_area
             continue
-
+            
         if not is_in_code_area and line.startswith(HEADER_MARK):
             header_match = re.match(HEADER_PATTERN, line)
             if header_match:
@@ -46,10 +49,11 @@ def generate_table_of_contents(md_content):
                 anchor = generate_unique_anchor(header_text)
                 toc_entry = f"{' ' * (header_level - 1) * 4}- [{header_text}](#{anchor})"
                 toc_lines.append(toc_entry)
-
+            
     return "\n".join(toc_lines)
 
 
+# Internal function to add a table of contents to markdown contents
 def add_toc_internal(md_content, toc_marker):
     # Check if the table of contents already exists between markers
     if toc_marker in md_content:
@@ -62,24 +66,25 @@ def add_toc_internal(md_content, toc_marker):
 
     if title_match:
         # Use the title from the markdown file and insert the table of contents
-        toc = generate_table_of_contents(md_content)
+        toc = generate_toc(md_content)
         title_end = title_match.end()
         updated_content = f"{md_content[:title_end]}\n{toc_marker}\n{toc}\n{toc_marker}{md_content[title_end:]}"
     else:
         # Use the default title and insert the table of contents
         default_title = "Title"
-        toc = generate_table_of_contents(md_content)
+        toc = generate_toc(md_content)
         updated_content = f"{default_title}\n===\n{toc_marker}\n{toc}\n{toc_marker}{md_content}"
     return updated_content
 
 
+# Internal function to remove a table of contents from markdown contents
 def remove_toc_internal(md_content, toc_marker):
     # Check if the table of contents exists between markers
     if toc_marker in md_content:
         # Find the start and end positions of the table of contents
         toc_start = md_content.find(toc_marker)
         toc_end = md_content.find(toc_marker, toc_start + len(toc_marker))
-
+        
         if toc_end != -1:
             # Remove the table of contents along with the markers
             updated_content = md_content[:toc_start].strip() + md_content[toc_end + len(toc_marker):]
@@ -93,14 +98,14 @@ def remove_toc_internal(md_content, toc_marker):
     return updated_content
 
 
-# Function to read content from a file
+# Function to read contents from a file
 def read_file(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         content = file.read()
     return content
 
 
-# Function to write content to a file
+# Function to write contents to a file
 def write_file(file_path, content):
     with open(file_path, 'w', encoding='utf-8') as file:
         file.write(content)
@@ -136,6 +141,7 @@ def process_files_in_directory(directory_path, action):
             pass
 
 
+# Main function
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Add or remove table of contents in Markdown files.")
     parser.add_argument("action_to_perform", choices=["add", "remove", "update"], help="Action to perform: 'add' or 'remove' the table of contents.")
